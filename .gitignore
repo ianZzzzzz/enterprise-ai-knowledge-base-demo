@@ -51,3 +51,6 @@ uploads/
 # Documentation build outputs
 site/
 .docs-build/
+
+# TypeScript
+*.tsbuildinfo
