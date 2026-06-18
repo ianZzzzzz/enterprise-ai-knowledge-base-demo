@@ -78,3 +78,25 @@
 - AI 问答。
 - 前端业务页面。
 - 自动化测试套件。
+
+## CI 检查
+
+本仓库通过 GitHub Actions 提供基础 CI，workflow 文件位于 `.github/workflows/ci.yml`。CI 会在以下场景自动触发：
+
+- 创建或更新 Pull Request。
+- 推送代码到 `main` 分支。
+
+CI 包含两个独立 job：
+
+- **Backend tests**：使用 Python 3.12，安装 `backend/requirements.txt` 和 `tests/requirements.txt`，然后运行后端测试。
+- **Frontend build**：使用 Node.js 20，通过 `npm ci --prefix frontend` 安装前端依赖，然后运行生产构建检查。
+
+本地可使用以下等价命令提前验证：
+
+```bash
+python -m pip install -r backend/requirements.txt
+python -m pip install -r tests/requirements.txt
+python -m pytest tests/backend
+npm ci --prefix frontend
+npm run build --prefix frontend
+```
